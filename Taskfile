@@ -1,0 +1,25 @@
+#!/bin/bash
+PATH="$PWD/node_modules/.bin":$PATH
+set -e
+
+remark_output() {
+    remark_run --output
+}
+
+build_tsup() {
+    set -x
+    rm -rfv dist
+    # npm i tsup --no-save on CI/CD
+    npx tsup src/index.ts --format cjs --target es2017 --dts --sourcemap
+    cp -fv README.md LICENSE package.json dist
+}
+
+commit_lint() {
+    if git-branch-is -q -r "^(master)"; then
+        commitlint --edit
+    else
+        true
+    fi
+}
+
+"$@"
