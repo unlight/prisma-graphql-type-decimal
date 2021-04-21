@@ -4,7 +4,7 @@
   "license": "MIT",
   "description": "GraphQL scalar type for decimal.js",
   "main": "index.js",
-  "types": "index.d.ts",
+  "types": "index.ts",
   "keywords": [
     "prisma-client",
     "graphql-scalar",
@@ -35,7 +35,7 @@
     "format:src": "prettier src --write",
     "commit_lint": "sh Taskfile commit_lint",
     "commit": "cz",
-    "build": "sh Taskfile build_tsup",
+    "build": "sh Taskfile build",
     "mocha": "node node_modules/mocha/bin/_mocha",
     "test:d": "ndb -r ts-node/register/transpile-only node_modules/mocha/bin/_mocha --no-timeouts --watch-files src/**/*.ts --watch src/**/*.spec.ts"
   },
