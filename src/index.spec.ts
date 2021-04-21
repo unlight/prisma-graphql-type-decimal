@@ -1,8 +1,10 @@
-import { Decimal } from 'decimal.js';
+import { Prisma } from '@prisma/client';
 import expect from 'expect';
 import { graphql, GraphQLObjectType, GraphQLSchema } from 'graphql';
 
 import { GraphQLDecimal } from '.';
+
+const Decimal = Prisma.Decimal;
 
 it('smoke', async () => {
     const schema = new GraphQLSchema({
