@@ -5,7 +5,21 @@
   "description": "GraphQL scalar type for decimal.js",
   "main": "index.js",
   "types": "index.d.ts",
-  "keywords": [],
+  "keywords": [
+    "prisma-client",
+    "graphql-scalar",
+    "graphql-type-scalar",
+    "decimal.js",
+    "graphql"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/unlight/prisma-graphql-type-decimal.git"
+  },
+  "bugs": {
+    "url": "https://github.com/unlight/prisma-graphql-type-decimal/issues"
+  },
+  "homepage": "https://github.com/unlight/prisma-graphql-type-decimal#readme",
   "scripts": {
     "test": "npm run eslint && npm run tscheck && npm run test:cov",
     "test:p": "ultra test",
