@@ -107,6 +107,7 @@ module.exports = {
         {
             files: ['*.spec.ts', '**/testing/**/*.ts'],
             rules: {
+                'unicorn/no-null': 0,
                 'consistent-return': 0,
                 'max-lines': 0,
                 '@typescript-eslint/no-explicit-any': 0,

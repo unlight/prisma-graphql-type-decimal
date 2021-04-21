@@ -37,7 +37,8 @@
     }
   },
   "peerDependencies": {
-    "decimal.js": ">=10"
+    "decimal.js": ">=10",
+    "graphql": ">=15"
   },
   "devDependencies": {
     "@arkweid/lefthook": "^0.7.2",
