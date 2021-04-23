@@ -1,7 +1,7 @@
 # prisma-graphql-type-decimal
 
 GraphQL scalar type for Prisma's Decimal type, wrapper around [decimal.js](https://github.com/MikeMcl/decimal.js/)  
-`@prisma/client` has bundled `decimal.js`
+Created because `@prisma/client` has bundled `decimal.js`
 
 ## Install
 
@@ -10,11 +10,20 @@ npm install prisma-graphql-type-decimal
 
 ```
 
-## Resources
+## Usage
 
--   How to test graphql https://github.com/soundtrackyourbrand/graphql-custom-datetype/blob/master/test/dateTimeTypeTest.js
--   How to test graphql https://github.com/olistic/graphql-type-uuid/blob/master/src/index.test.js
+Example usage with NestJS GraphQL code first approach:
 
-# Todo
+```
+import { GraphQLDecimal } from 'prisma-graphql-type-decimal';
+import { Prisma } from '@prisma/client';
 
--   We need wrap Decimal prisma/client
+@ObjectType()
+export class User {
+    @Field(() => GraphQLDecimal)
+    money: Prisma.Decimal;
+}
+
+```
+
+## Todo
