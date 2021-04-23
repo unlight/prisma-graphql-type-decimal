@@ -1,11 +1,25 @@
 {
-  "name": "graphql-decimal.js",
+  "name": "prisma-graphql-type-decimal",
   "version": "0.0.0-dev",
   "license": "MIT",
   "description": "GraphQL scalar type for decimal.js",
   "main": "index.js",
-  "types": "index.d.ts",
-  "keywords": [],
+  "types": "index.ts",
+  "keywords": [
+    "prisma-client",
+    "graphql-scalar",
+    "graphql-type-scalar",
+    "decimal.js",
+    "graphql"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/unlight/prisma-graphql-type-decimal.git"
+  },
+  "bugs": {
+    "url": "https://github.com/unlight/prisma-graphql-type-decimal/issues"
+  },
+  "homepage": "https://github.com/unlight/prisma-graphql-type-decimal#readme",
   "scripts": {
     "test": "npm run eslint && npm run tscheck && npm run test:cov",
     "test:p": "ultra test",
@@ -21,7 +35,7 @@
     "format:src": "prettier src --write",
     "commit_lint": "sh Taskfile commit_lint",
     "commit": "cz",
-    "build": "sh Taskfile build_tsup",
+    "build": "sh Taskfile build",
     "mocha": "node node_modules/mocha/bin/_mocha",
     "test:d": "ndb -r ts-node/register/transpile-only node_modules/mocha/bin/_mocha --no-timeouts --watch-files src/**/*.ts --watch src/**/*.spec.ts"
   },
@@ -37,12 +51,14 @@
     }
   },
   "peerDependencies": {
-    "decimal.js": ">=10"
+    "@prisma/client": ">=2.18",
+    "graphql": ">=15"
   },
   "devDependencies": {
     "@arkweid/lefthook": "^0.7.2",
     "@commitlint/cli": "^12.1.1",
     "@commitlint/config-conventional": "^12.1.1",
+    "@prisma/client": "^2.21.2",
     "@semantic-release/changelog": "^5.0.1",
     "@semantic-release/git": "^9.0.0",
     "@types/mocha": "^8.2.2",
@@ -52,7 +68,6 @@
     "c8": "^7.7.1",
     "commitizen": "^4.2.3",
     "cz-customizable": "^6.3.0",
-    "decimal.js": "^10.2.1",
     "eslint": "^7.24.0",
     "eslint-config-prettier": "^8.2.0",
     "eslint-import-resolver-node": "^0.3.4",
@@ -74,6 +89,7 @@
     "mocha": "^8.3.2",
     "precise-commits": "^1.0.2",
     "prettier": "^2.2.1",
+    "prisma": "^2.21.2",
     "semantic-release": "^17.4.2",
     "simplytyped": "^3.3.0",
     "ts-node": "^9.1.1",

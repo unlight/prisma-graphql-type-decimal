@@ -1,0 +1,20 @@
+datasource database {
+  provider = "postgres"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider        = "prisma-client-js"
+}
+
+model Dummy {
+  id      String   @id
+  created DateTime @default(now())
+  floaty  Float
+  int     Int?
+  float   Float?
+  bytes   Bytes?
+  decimal Decimal?
+  bigInt  BigInt?
+  json    Json?
+}

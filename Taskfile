@@ -6,6 +6,20 @@ remark_output() {
     remark_run --output
 }
 
+build() {
+    set -x
+    rm -rfv dist
+    cp -rfv src dist
+    cat tsconfig.json | jq 'del(.include, .compilerOptions.outDir)' >dist/tsconfig.json
+    cp -fv README.md LICENSE package.json dist
+    cd dist
+    /usr/bin/find . -name '*.spec.ts' | xargs rm -rvf
+    tsc -p .
+    rm -rvf tsconfig.json
+    cd ..
+    set +x
+}
+
 build_tsup() {
     set -x
     rm -rfv dist
