@@ -1,6 +1,6 @@
 # prisma-graphql-type-decimal
 
-GraphQL scalar type for Prisma's Decimal type, wrapper around [decimal.js](https://github.com/MikeMcl/decimal.js/)  
+GraphQL type for Prisma's Decimal scalar, wrapper around [decimal.js](https://github.com/MikeMcl/decimal.js/)  
 Created because `@prisma/client` has bundled `decimal.js`
 
 ## Install
