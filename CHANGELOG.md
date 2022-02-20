@@ -3,8 +3,7 @@
 
 ### ⚠ BREAKING CHANGES
 
-* - GraphQL >= 16
-- Prisma >= 3.8
+* GraphQL >= 16, Prisma >= 3.8
 
 ### Miscellaneous Chores
 
