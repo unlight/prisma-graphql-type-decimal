@@ -20,14 +20,14 @@ it('smoke', async () => {
     });
 
     expect(
-        await graphql(
+        await graphql({
             schema,
-            /* GraphQL */ `
+            source: /* GraphQL */ `
                 query {
                     decimal
                 }
             `,
-        ),
+        }),
     ).toBeTruthy();
 });
 
@@ -47,16 +47,16 @@ it('echo', async () => {
         }),
     });
     expect(
-        await graphql(
+        await graphql({
             schema,
-            /* GraphQL */ `
+            source: /* GraphQL */ `
                 query {
                     float: echo(num: 0.1)
                     int: echo(num: 2)
                     string: echo(num: "3")
                 }
             `,
-        ),
+        }),
     ).toEqual({
         data: {
             float: '0.1',
@@ -82,14 +82,14 @@ it('inc', async () => {
         }),
     });
     expect(
-        await graphql(
+        await graphql({
             schema,
-            /* GraphQL */ `
+            source: /* GraphQL */ `
                 query {
                     inc(num: 0.2)
                 }
             `,
-        ),
+        }),
     ).toEqual({
         data: {
             inc: '0.3',
@@ -120,17 +120,18 @@ it('parse value', async () => {
         }),
     });
     expect(
-        await graphql(
+        await graphql({
             schema,
-            /* GraphQL */ `
-                query($a: Decimal, $b: Decimal) {
+            source: /* GraphQL */ `
+                query ($a: Decimal, $b: Decimal) {
                     sum(a: $a, b: $b)
                 }
             `,
-            undefined,
-            undefined,
-            { a: new Decimal(0.1), b: '0.2' },
-        ),
+            variableValues: {
+                a: new Decimal(0.1),
+                b: '0.2',
+            },
+        }),
     ).toEqual({
         data: {
             sum: '0.3',
@@ -152,17 +153,51 @@ it('null', async () => {
     });
 
     expect(
-        await graphql(
+        await graphql({
             schema,
-            /* GraphQL */ `
+            source: /* GraphQL */ `
                 query {
                     decimal
                 }
             `,
-        ),
+        }),
     ).toEqual({
         data: {
             decimal: null,
+        },
+    });
+});
+
+it('unknown value to parse', async () => {
+    const schema = new GraphQLSchema({
+        query: new GraphQLObjectType({
+            name: 'Query',
+            fields: {
+                field: {
+                    type: GraphQLDecimal,
+                    args: {
+                        arg1: { type: GraphQLDecimal },
+                    },
+                    resolve: (_root, args) => {
+                        return args.arg1 === null ? 'failed to parse' : args.arg1;
+                    },
+                },
+            },
+        }),
+    });
+
+    expect(
+        await graphql({
+            schema,
+            source: /* GraphQL */ `
+                query {
+                    field(arg1: false)
+                }
+            `,
+        }),
+    ).toEqual({
+        data: {
+            field: 'failed to parse',
         },
     });
 });
