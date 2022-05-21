@@ -230,4 +230,14 @@ describe('class transformer', () => {
     const transfer = plainToClass(Transfer, { money: { toString: () => '1' } });
     expect(transfer.money).toBeInstanceOf(Decimal);
   });
+
+  it('decimalValueObjectFactory array', () => {
+    class Transfer {
+      @Type(decimalValueObjectFactory)
+      moneys!: Array<Decimal>;
+    }
+
+    const transfer = plainToClass(Transfer, { moneys: [new Decimal(1)] });
+    expect(transfer.moneys[0]).toBeInstanceOf(Decimal);
+  });
 });
