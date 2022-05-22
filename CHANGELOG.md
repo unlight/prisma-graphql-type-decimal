@@ -1,3 +1,10 @@
+### [2.0.2](https://github.com/unlight/prisma-graphql-type-decimal/compare/v2.0.1...v2.0.2) (2022-05-22)
+
+
+### Bug Fixes
+
+* Transform to decimal ([ab2805d](https://github.com/unlight/prisma-graphql-type-decimal/commit/ab2805d989e9a346af80a9f7184a71ec00c32241))
+
 ### [2.0.1](https://github.com/unlight/prisma-graphql-type-decimal/compare/v2.0.0...v2.0.1) (2022-05-21)
 
 
