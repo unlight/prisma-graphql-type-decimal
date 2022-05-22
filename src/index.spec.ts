@@ -1,11 +1,11 @@
 import 'reflect-metadata';
 
 import { Decimal } from '@prisma/client/runtime';
-import { plainToClass, Type } from 'class-transformer';
+import { plainToClass, Transform, Type } from 'class-transformer';
 import expect from 'expect';
 import { graphql, GraphQLObjectType, GraphQLSchema } from 'graphql';
 
-import { decimalValueObjectFactory, GraphQLDecimal } from '.';
+import { createDecimalFromObject, GraphQLDecimal, transformToDecimal } from '.';
 
 it('smoke', async () => {
   const schema = new GraphQLSchema({
@@ -203,27 +203,65 @@ it('unknown value to parse', async () => {
   });
 });
 
+describe('decimal create from object', () => {
+  it('instanceof', () => {
+    const decimal = new Decimal(0.123);
+    // eslint-disable-next-line total-functions/no-unsafe-type-assertion
+    const o = createDecimalFromObject({
+      d: decimal.d,
+      e: decimal.e,
+      s: decimal.s,
+    });
+
+    expect(o).toBeInstanceOf(Decimal);
+    expect(o instanceof Decimal).toBeTruthy();
+  });
+
+  for (const { decimal, string } of [
+    { decimal: new Decimal(0.123), string: '0.123' },
+    { decimal: new Decimal(1.234_567_89), string: '1.23456789' },
+    { decimal: new Decimal(4.6875e-2), string: '0.046875' },
+    { decimal: new Decimal('1.79e+308'), string: '1.79e+308' },
+    { decimal: new Decimal('9007199254741991'), string: '9007199254741991' },
+  ]) {
+    it(`${decimal.toString()}`, () => {
+      // eslint-disable-next-line total-functions/no-unsafe-type-assertion
+      const o = Object.create(Decimal.prototype, {
+        d: { value: decimal.d },
+        e: { value: decimal.e },
+        s: { value: decimal.s },
+      }) as Decimal;
+
+      expect(o.toString()).toEqual(string);
+    });
+  }
+});
+
 describe('class transformer', () => {
   it('check type', () => {
     class Transfer {
-      @Type(decimalValueObjectFactory)
+      @Type(() => Object)
+      @Transform(transformToDecimal)
       money!: Decimal;
     }
   });
 
-  it('decimalValueObjectFactory main case', () => {
+  it('transformToDecimal main case', () => {
     class Transfer {
-      @Type(decimalValueObjectFactory)
+      @Type(() => Object)
+      @Transform(transformToDecimal)
       money!: Decimal;
     }
 
     const transfer = plainToClass(Transfer, { money: new Decimal(1) });
     expect(transfer.money).toBeInstanceOf(Decimal);
+    expect(transfer.money.isInteger()).toBe(true);
   });
 
-  it('decimalValueObjectFactory duck type', () => {
+  it('transformToDecimal duck type', () => {
     class Transfer {
-      @Type(decimalValueObjectFactory)
+      @Type(() => Object)
+      @Transform(transformToDecimal)
       money!: any;
     }
 
@@ -231,13 +269,29 @@ describe('class transformer', () => {
     expect(transfer.money).toBeInstanceOf(Decimal);
   });
 
-  it('decimalValueObjectFactory array', () => {
+  it('transformToDecimal array', () => {
     class Transfer {
-      @Type(decimalValueObjectFactory)
+      @Type(() => Object)
+      @Transform(transformToDecimal)
       moneys!: Array<Decimal>;
     }
 
     const transfer = plainToClass(Transfer, { moneys: [new Decimal(1)] });
     expect(transfer.moneys[0]).toBeInstanceOf(Decimal);
+  });
+
+  it('array in nested object', () => {
+    class Transfers {
+      @Type(() => Object)
+      @Transform(transformToDecimal)
+      moneys!: Array<Decimal>;
+    }
+    class Container {
+      @Type(() => Transfers)
+      set!: Transfers;
+    }
+
+    const container = plainToClass(Container, { set: { moneys: [new Decimal(1)] } });
+    expect(container.set.moneys[0]).toBeInstanceOf(Decimal);
   });
 });

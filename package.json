@@ -23,7 +23,7 @@
   "scripts": {
     "test": "npm run eslint && npm run tscheck && npm run test:cov",
     "test:r": "node -r ts-node/register node_modules/mocha/bin/mocha src/**/*.spec.ts",
-    "test:cov": "c8 --reporter text --exclude \"**/*.spec.ts\" --exclude \"**/testing/**\" npm run test:r -- --no-timeouts",
+    "test:cov": "c8 --reporter text --exclude \"**/*.spec.ts\" --exclude \"**/testing/**\" npm run test:r",
     "test:w": "npm run test:r -- --watch --watch-files src",
     "lint": "npm run eslint && npm run tscheck",
     "eslint": "node node_modules/eslint/bin/eslint \"src/**/*.{ts,tsx}\"",

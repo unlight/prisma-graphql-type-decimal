@@ -28,29 +28,21 @@ const config: GraphQLScalarTypeConfig<null | string | number | Decimal, string> 
 
 export const GraphQLDecimal = new GraphQLScalarType(config);
 
-interface TypeHelpOptions {
-  newObject: any;
-  object: Record<string, any>;
-  property: string;
+export function createDecimalFromObject(object: any) {
+  // eslint-disable-next-line total-functions/no-unsafe-type-assertion
+  return Object.create(Decimal.prototype, {
+    d: { value: object.d },
+    e: { value: object.e },
+    s: { value: object.s },
+  }) as Decimal;
 }
 
-/**
- * Trick to avoid error when using `@Field(() => GraphQLDecimal)`
- */
-export function decimalValueObjectFactory(options: TypeHelpOptions | undefined) {
-  const { object, property } = options as TypeHelpOptions;
-  const decimalValueObject = object[property];
+interface TransformFunctionParams {
+  value: any;
+}
 
-  const result = function () {
-    if (decimalValueObject instanceof Decimal) {
-      return decimalValueObject;
-    }
-    return new Decimal(String(decimalValueObject));
-  };
-
-  Object.defineProperty(result, 'name', {
-    value: `decimalValueObjectFactory_${property}`,
-  });
-
-  return result;
+export function transformToDecimal({ value }: TransformFunctionParams) {
+  return Array.isArray(value)
+    ? value.map(createDecimalFromObject)
+    : createDecimalFromObject(value);
 }
