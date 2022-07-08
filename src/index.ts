@@ -1,4 +1,4 @@
-import { Decimal } from '@prisma/client/runtime';
+import { Decimal } from '@prisma/client/runtime/index.js';
 import { GraphQLScalarType, GraphQLScalarTypeConfig, Kind } from 'graphql';
 
 const config: GraphQLScalarTypeConfig<null | string | number | Decimal, string> = {
