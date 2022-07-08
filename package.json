@@ -37,11 +37,6 @@
     "build": "sh Taskfile build_pkgroll",
     "test:d": "ndb -r ts-node/register/transpile-only node_modules/mocha/bin/mocha --no-timeouts --watch-files src/**/*.ts --watch src/**/*.spec.ts"
   },
-  "config": {
-    "commitizen": {
-      "path": "node_modules/cz-customizable"
-    }
-  },
   "peerDependencies": {
     "@prisma/client": ">=3.9",
     "graphql": ">=16"
@@ -61,6 +56,7 @@
     "c8": "^7.11.3",
     "class-transformer": "^0.5.1",
     "commitizen": "^4.2.4",
+    "cz-conventional-changelog": "^3.3.0",
     "cz-customizable": "^6.9.0",
     "eslint": "^8.19.0",
     "eslint-config-prettier": "^8.5.0",
