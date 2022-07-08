@@ -3,13 +3,13 @@
   "version": "0.0.0-dev",
   "license": "MIT",
   "description": "GraphQL type for Prisma's Decimal scalar, wrapper around decimal.js",
-  "main": "./cjs/index.js",
-  "module": "./esm/index.mjs",
-  "types": "index.d.ts",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
   "exports": {
     ".": {
-      "import": "./esm/index.mjs",
-      "require": "./cjs/index.js"
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.cjs"
     }
   },
   "repository": {
@@ -34,7 +34,7 @@
     "format:src": "prettier src --write",
     "commit_lint": "sh Taskfile commit_lint",
     "commit": "cz",
-    "build": "sh Taskfile build_hybrid",
+    "build": "sh Taskfile build_pkgroll",
     "test:d": "ndb -r ts-node/register/transpile-only node_modules/mocha/bin/mocha --no-timeouts --watch-files src/**/*.ts --watch src/**/*.spec.ts"
   },
   "config": {
