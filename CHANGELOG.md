@@ -1,3 +1,10 @@
+## [2.0.3](https://github.com/unlight/prisma-graphql-type-decimal/compare/v2.0.2...v2.0.3) (2022-07-08)
+
+
+### Bug Fixes
+
+* **esm:** Fix import path ([8cdae9e](https://github.com/unlight/prisma-graphql-type-decimal/commit/8cdae9ed1f7b1307d4777933a74068b4a17e0d7a)), closes [#3](https://github.com/unlight/prisma-graphql-type-decimal/issues/3)
+
 ### [2.0.2](https://github.com/unlight/prisma-graphql-type-decimal/compare/v2.0.1...v2.0.2) (2022-05-22)
 
 
