@@ -1,3 +1,10 @@
+## [2.0.4](https://github.com/unlight/prisma-graphql-type-decimal/compare/v2.0.3...v2.0.4) (2022-07-09)
+
+
+### Bug Fixes
+
+* **esm:** Targets must start with `./` ([8ff34b6](https://github.com/unlight/prisma-graphql-type-decimal/commit/8ff34b6d07b1cdf245cc0548ef4c86ac897045b1)), closes [#4](https://github.com/unlight/prisma-graphql-type-decimal/issues/4)
+
 ## [2.0.3](https://github.com/unlight/prisma-graphql-type-decimal/compare/v2.0.2...v2.0.3) (2022-07-08)
 
 
