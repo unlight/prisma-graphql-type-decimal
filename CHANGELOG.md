@@ -1,3 +1,10 @@
+## [2.0.5](https://github.com/unlight/prisma-graphql-type-decimal/compare/v2.0.4...v2.0.5) (2023-01-12)
+
+
+### Bug Fixes
+
+* Decimal can be null ([04a27f3](https://github.com/unlight/prisma-graphql-type-decimal/commit/04a27f31582bb70a407ded5bb76897bebb53b6f0)), closes [#7](https://github.com/unlight/prisma-graphql-type-decimal/issues/7)
+
 ## [2.0.4](https://github.com/unlight/prisma-graphql-type-decimal/compare/v2.0.3...v2.0.4) (2022-07-09)
 
 
