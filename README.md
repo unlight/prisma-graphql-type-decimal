@@ -44,3 +44,7 @@ class Container {
   set!: Transfers;
 }
 ```
+
+## License
+
+[MIT License](https://opensource.org/licenses/MIT) (c) 2022

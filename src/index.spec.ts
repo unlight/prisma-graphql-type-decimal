@@ -294,4 +294,26 @@ describe('class transformer', () => {
     const container = plainToClass(Container, { set: { moneys: [new Decimal(1)] } });
     expect(container.set.moneys[0]).toBeInstanceOf(Decimal);
   });
+
+  it('null should not be transformed', () => {
+    class Transfer {
+      @Type(() => Object)
+      @Transform(transformToDecimal)
+      money?: Decimal;
+    }
+
+    const transfer = plainToClass(Transfer, { money: null });
+    expect(transfer).toEqual({ money: null });
+  });
+
+  it('undefined should not be transformed', () => {
+    class Transfer {
+      @Type(() => Object)
+      @Transform(transformToDecimal)
+      money?: Decimal;
+    }
+
+    const transfer = plainToClass(Transfer, { money: undefined });
+    expect(transfer).toEqual({ money: undefined });
+  });
 });

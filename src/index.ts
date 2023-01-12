@@ -42,6 +42,7 @@ interface TransformFunctionParams {
 }
 
 export function transformToDecimal({ value }: TransformFunctionParams) {
+  if (value == null) return value;
   return Array.isArray(value)
     ? value.map(createDecimalFromObject)
     : createDecimalFromObject(value);
