@@ -40,7 +40,12 @@ module.exports = {
     'etc',
     'only-warn',
   ],
-  ignorePatterns: ['@generated/**', '*.config.js', '.*rc.js'],
+  ignorePatterns: [
+    '@generated/**',
+    '*.config.js',
+    '.*rc.js',
+    'stryker.conf.mjs',
+  ],
   rules: {
     // core
     'consistent-return': [1, { treatUndefinedAsUnspecified: true }],

@@ -291,7 +291,9 @@ describe('class transformer', () => {
       set!: Transfers;
     }
 
-    const container = plainToClass(Container, { set: { moneys: [new Decimal(1)] } });
+    const container = plainToClass(Container, {
+      set: { moneys: [new Decimal(1)] },
+    });
     expect(container.set.moneys[0]).toBeInstanceOf(Decimal);
   });
 
