@@ -1,3 +1,10 @@
+## [2.0.6](https://github.com/unlight/prisma-graphql-type-decimal/compare/v2.0.5...v2.0.6) (2023-01-19)
+
+
+### Bug Fixes
+
+* Correct semver range ([7b7bf2e](https://github.com/unlight/prisma-graphql-type-decimal/commit/7b7bf2ef15ff3274299209851031d7c756d13a57))
+
 ## [2.0.5](https://github.com/unlight/prisma-graphql-type-decimal/compare/v2.0.4...v2.0.5) (2023-01-12)
 
 
