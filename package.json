@@ -39,7 +39,7 @@
     "test:d": "ndb -r ts-node/register/transpile-only node_modules/mocha/bin/mocha --no-timeouts --watch-files src/**/*.ts --watch src/**/*.spec.ts"
   },
   "peerDependencies": {
-    "@prisma/client": "3 4",
+    "@prisma/client": ">=3 <=4",
     "graphql": "16"
   },
   "devDependencies": {
