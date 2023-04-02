@@ -15,7 +15,7 @@ npm install prisma-graphql-type-decimal
 Example usage with NestJS GraphQL code first approach:
 
 ```ts
-import { Decimal } from '@prisma/client/runtime';
+import { Decimal } from '@prisma/client/runtime/library.js';
 import { transformToDecimal } from 'prisma-graphql-type-decimal';
 import { Type, Transform } from 'class-transformer';
 
@@ -48,4 +48,4 @@ class Container {
 
 ## License
 
-[MIT License](https://opensource.org/licenses/MIT) (c) 2022
+[MIT License](https://opensource.org/licenses/MIT) (c) 2023
