@@ -1,3 +1,14 @@
+## [3.0.0](https://github.com/unlight/prisma-graphql-type-decimal/compare/v2.0.6...v3.0.0) (2023-04-02)
+
+
+### ⚠ BREAKING CHANGES
+
+* `Decimal` imports from `@prisma/client/runtime/library`, require Prisma v4.12+
+
+### Bug Fixes
+
+* Deprecation warning `imports from "@prisma/client/runtime" are deprecated` ([76ffa5d](https://github.com/unlight/prisma-graphql-type-decimal/commit/76ffa5d3e663b6b9befcbaf1a6e2d0e7ee2875d8))
+
 ## [2.0.6](https://github.com/unlight/prisma-graphql-type-decimal/compare/v2.0.5...v2.0.6) (2023-01-19)
 
 
