@@ -2,19 +2,23 @@
 PATH="$PWD/node_modules/.bin":$PATH
 set -e
 
-build_pkgroll() {
+buildMicrobundle4() {
   set -x
-  rm -rf dist
-  mkdir dist
-  # https://esbuild.github.io/api/#target
-  npx pkgroll --target=es2020
-  cp -f README.md dist
-  cat package.json | jq '.main = "./index.cjs"' |
-    jq '.module = "./index.mjs"' |
-    jq '.types = "./index.d.ts"' |
-    jq '.exports.".".import = "./index.mjs"' |
-    jq '.exports.".".require = "./index.cjs"' \
-      >dist/package.json
+  rm -rfv dist
+  microbundle -i src/index.ts --tsconfig tsconfig.json --no-sourcemap --no-compress --target node -f cjs,esm -o dist
+  name=$(cat package.json | jq -r '.name')
+  cp -v README.md package.json dist
+  cd dist
+  mv "$name.js" "$name.cjs"
+  mv index.d.ts "$name.d.ts"
+  cat ../package.json | jq --arg name "$name" '
+    .main = "./\($name).cjs" |
+    .module = "./\($name).mjs" |
+    .types = "./\($name).d.ts" |
+    .exports.".".import = "./\($name).mjs" |
+    .exports.".".require = "./\($name).cjs"
+  ' > package.json
+  cd ..
   set +x
 }
 
