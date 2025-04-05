@@ -1,3 +1,9 @@
+## <small>3.0.1 (2025-04-05)</small>
+
+* build: Update scripts ([06c067b](https://github.com/unlight/prisma-graphql-type-decimal/commit/06c067b))
+* fix: Update peer dependencies ([4248fe0](https://github.com/unlight/prisma-graphql-type-decimal/commit/4248fe0))
+* chore: Updated packages ([774917b](https://github.com/unlight/prisma-graphql-type-decimal/commit/774917b))
+
 ## [3.0.0](https://github.com/unlight/prisma-graphql-type-decimal/compare/v2.0.6...v3.0.0) (2023-04-02)
 
 
