@@ -11,7 +11,7 @@ jobs:
       # max-parallel: 1
       matrix:
         node:
-          - 18
+          - 22
         os:
           - ubuntu-latest
           # - windows-latest
@@ -49,7 +49,7 @@ jobs:
       - name: 'Setup Node'
         uses: actions/setup-node@v3
         with:
-          node-version: 18
+          node-version: 22
 
       - name: 'Install Depependencies'
         run: |
