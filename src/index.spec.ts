@@ -1,6 +1,6 @@
 import 'reflect-metadata';
 
-import { Decimal } from '@prisma/client/runtime/library';
+import { Prisma } from '@prisma/client';
 import { plainToClass, Transform, Type } from 'class-transformer';
 import expect from 'expect';
 import { graphql, GraphQLObjectType, GraphQLSchema } from 'graphql';
@@ -77,7 +77,7 @@ it('inc', async () => {
           args: {
             num: { type: GraphQLDecimal },
           },
-          resolve: (_root, args) => new Decimal(0.1).add(args.num),
+          resolve: (_root, args) => new Prisma.Decimal(0.1).add(args.num),
         },
       },
     }),
@@ -114,7 +114,7 @@ it('parse value', async () => {
             },
           },
           resolve: (_root, args) => {
-            return Decimal.add(args.a, args.b);
+            return Prisma.Decimal.add(args.a, args.b);
           },
         },
       },
@@ -129,7 +129,7 @@ it('parse value', async () => {
         }
       `,
       variableValues: {
-        a: new Decimal(0.1),
+        a: new Prisma.Decimal(0.1),
         b: '0.2',
       },
     }),
@@ -205,7 +205,7 @@ it('unknown value to parse', async () => {
 
 describe('decimal create from object', () => {
   it('instanceof', () => {
-    const decimal = new Decimal(0.123);
+    const decimal = new Prisma.Decimal(0.123);
     // eslint-disable-next-line total-functions/no-unsafe-type-assertion
     const o = createDecimalFromObject({
       d: decimal.d,
@@ -213,24 +213,24 @@ describe('decimal create from object', () => {
       s: decimal.s,
     });
 
-    expect(o).toBeInstanceOf(Decimal);
-    expect(o instanceof Decimal).toBeTruthy();
+    expect(o).toBeInstanceOf(Prisma.Decimal);
+    expect(o instanceof Prisma.Decimal).toBeTruthy();
   });
 
   for (const { decimal, string } of [
-    { decimal: new Decimal(0.123), string: '0.123' },
-    { decimal: new Decimal(1.234_567_89), string: '1.23456789' },
-    { decimal: new Decimal(4.6875e-2), string: '0.046875' },
-    { decimal: new Decimal('1.79e+308'), string: '1.79e+308' },
-    { decimal: new Decimal('9007199254741991'), string: '9007199254741991' },
+    { decimal: new Prisma.Decimal(0.123), string: '0.123' },
+    { decimal: new Prisma.Decimal(1.234_567_89), string: '1.23456789' },
+    { decimal: new Prisma.Decimal(4.6875e-2), string: '0.046875' },
+    { decimal: new Prisma.Decimal('1.79e+308'), string: '1.79e+308' },
+    { decimal: new Prisma.Decimal('9007199254741991'), string: '9007199254741991' },
   ]) {
     it(`${decimal.toString()}`, () => {
       // eslint-disable-next-line total-functions/no-unsafe-type-assertion
-      const o = Object.create(Decimal.prototype, {
+      const o = Object.create(Prisma.Decimal.prototype, {
         d: { value: decimal.d },
         e: { value: decimal.e },
         s: { value: decimal.s },
-      }) as Decimal;
+      }) as Prisma.Decimal;
 
       expect(o.toString()).toEqual(string);
     });
@@ -242,7 +242,7 @@ describe('class transformer', () => {
     class Transfer {
       @Type(() => Object)
       @Transform(transformToDecimal)
-      money!: Decimal;
+      money!: Prisma.Decimal;
     }
   });
 
@@ -250,11 +250,11 @@ describe('class transformer', () => {
     class Transfer {
       @Type(() => Object)
       @Transform(transformToDecimal)
-      money!: Decimal;
+      money!: Prisma.Decimal;
     }
 
-    const transfer = plainToClass(Transfer, { money: new Decimal(1) });
-    expect(transfer.money).toBeInstanceOf(Decimal);
+    const transfer = plainToClass(Transfer, { money: new Prisma.Decimal(1) });
+    expect(transfer.money).toBeInstanceOf(Prisma.Decimal);
     expect(transfer.money.isInteger()).toBe(true);
   });
 
@@ -266,25 +266,25 @@ describe('class transformer', () => {
     }
 
     const transfer = plainToClass(Transfer, { money: { toString: () => '1' } });
-    expect(transfer.money).toBeInstanceOf(Decimal);
+    expect(transfer.money).toBeInstanceOf(Prisma.Decimal);
   });
 
   it('transformToDecimal array', () => {
     class Transfer {
       @Type(() => Object)
       @Transform(transformToDecimal)
-      moneys!: Array<Decimal>;
+      moneys!: Array<Prisma.Decimal>;
     }
 
-    const transfer = plainToClass(Transfer, { moneys: [new Decimal(1)] });
-    expect(transfer.moneys[0]).toBeInstanceOf(Decimal);
+    const transfer = plainToClass(Transfer, { moneys: [new Prisma.Decimal(1)] });
+    expect(transfer.moneys[0]).toBeInstanceOf(Prisma.Decimal);
   });
 
   it('array in nested object', () => {
     class Transfers {
       @Type(() => Object)
       @Transform(transformToDecimal)
-      moneys!: Array<Decimal>;
+      moneys!: Array<Prisma.Decimal>;
     }
     class Container {
       @Type(() => Transfers)
@@ -292,16 +292,16 @@ describe('class transformer', () => {
     }
 
     const container = plainToClass(Container, {
-      set: { moneys: [new Decimal(1)] },
+      set: { moneys: [new Prisma.Decimal(1)] },
     });
-    expect(container.set.moneys[0]).toBeInstanceOf(Decimal);
+    expect(container.set.moneys[0]).toBeInstanceOf(Prisma.Decimal);
   });
 
   it('null should not be transformed', () => {
     class Transfer {
       @Type(() => Object)
       @Transform(transformToDecimal)
-      money?: Decimal;
+      money?: Prisma.Decimal;
     }
 
     const transfer = plainToClass(Transfer, { money: null });
@@ -312,7 +312,7 @@ describe('class transformer', () => {
     class Transfer {
       @Type(() => Object)
       @Transform(transformToDecimal)
-      money?: Decimal;
+      money?: Prisma.Decimal;
     }
 
     const transfer = plainToClass(Transfer, { money: undefined });
