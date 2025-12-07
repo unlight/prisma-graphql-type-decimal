@@ -1,4 +1,4 @@
-import { Prisma } from '@prisma/client';
+import { Prisma } from '@prisma/client/generator-build';
 import { GraphQLScalarType, GraphQLScalarTypeConfig, Kind } from 'graphql';
 
 const config: GraphQLScalarTypeConfig<

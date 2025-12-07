@@ -1,6 +1,6 @@
 import 'reflect-metadata';
 
-import { Prisma } from '@prisma/client';
+import { Prisma } from '@prisma/client/generator-build';
 import { plainToClass, Transform, Type } from 'class-transformer';
 import expect from 'expect';
 import { graphql, GraphQLObjectType, GraphQLSchema } from 'graphql';
@@ -10,13 +10,13 @@ import { createDecimalFromObject, GraphQLDecimal, transformToDecimal } from '.';
 it('smoke', async () => {
   const schema = new GraphQLSchema({
     query: new GraphQLObjectType({
-      name: 'Query',
       fields: {
         decimal: {
-          type: GraphQLDecimal,
           resolve: () => 1,
+          type: GraphQLDecimal,
         },
       },
+      name: 'Query',
     }),
   });
 
@@ -35,16 +35,16 @@ it('smoke', async () => {
 it('echo', async () => {
   const schema = new GraphQLSchema({
     query: new GraphQLObjectType({
-      name: 'Query',
       fields: {
         echo: {
-          type: GraphQLDecimal,
           args: {
             num: { type: GraphQLDecimal },
           },
           resolve: (_root, args) => args.num,
+          type: GraphQLDecimal,
         },
       },
+      name: 'Query',
     }),
   });
   expect(
@@ -70,16 +70,16 @@ it('echo', async () => {
 it('inc', async () => {
   const schema = new GraphQLSchema({
     query: new GraphQLObjectType({
-      name: 'Query',
       fields: {
         inc: {
-          type: GraphQLDecimal,
           args: {
             num: { type: GraphQLDecimal },
           },
           resolve: (_root, args) => new Prisma.Decimal(0.1).add(args.num),
+          type: GraphQLDecimal,
         },
       },
+      name: 'Query',
     }),
   });
   expect(
@@ -101,10 +101,8 @@ it('inc', async () => {
 it('parse value', async () => {
   const schema = new GraphQLSchema({
     query: new GraphQLObjectType({
-      name: 'Query',
       fields: {
         sum: {
-          type: GraphQLDecimal,
           args: {
             a: {
               type: GraphQLDecimal,
@@ -116,8 +114,10 @@ it('parse value', async () => {
           resolve: (_root, args) => {
             return Prisma.Decimal.add(args.a, args.b);
           },
+          type: GraphQLDecimal,
         },
       },
+      name: 'Query',
     }),
   });
   expect(
@@ -143,13 +143,13 @@ it('parse value', async () => {
 it('null', async () => {
   const schema = new GraphQLSchema({
     query: new GraphQLObjectType({
-      name: 'Query',
       fields: {
         decimal: {
-          type: GraphQLDecimal,
           resolve: () => null,
+          type: GraphQLDecimal,
         },
       },
+      name: 'Query',
     }),
   });
 
@@ -172,18 +172,18 @@ it('null', async () => {
 it('unknown value to parse', async () => {
   const schema = new GraphQLSchema({
     query: new GraphQLObjectType({
-      name: 'Query',
       fields: {
         field: {
-          type: GraphQLDecimal,
           args: {
             arg1: { type: GraphQLDecimal },
           },
           resolve: (_root, args) => {
             return args.arg1 === null ? 'failed to parse' : args.arg1;
           },
+          type: GraphQLDecimal,
         },
       },
+      name: 'Query',
     }),
   });
 
@@ -222,7 +222,10 @@ describe('decimal create from object', () => {
     { decimal: new Prisma.Decimal(1.234_567_89), string: '1.23456789' },
     { decimal: new Prisma.Decimal(4.6875e-2), string: '0.046875' },
     { decimal: new Prisma.Decimal('1.79e+308'), string: '1.79e+308' },
-    { decimal: new Prisma.Decimal('9007199254741991'), string: '9007199254741991' },
+    {
+      decimal: new Prisma.Decimal('9007199254741991'),
+      string: '9007199254741991',
+    },
   ]) {
     it(`${decimal.toString()}`, () => {
       // eslint-disable-next-line total-functions/no-unsafe-type-assertion
@@ -276,7 +279,9 @@ describe('class transformer', () => {
       moneys!: Array<Prisma.Decimal>;
     }
 
-    const transfer = plainToClass(Transfer, { moneys: [new Prisma.Decimal(1)] });
+    const transfer = plainToClass(Transfer, {
+      moneys: [new Prisma.Decimal(1)],
+    });
     expect(transfer.moneys[0]).toBeInstanceOf(Prisma.Decimal);
   });
 
