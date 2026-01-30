@@ -48,4 +48,4 @@ class Container {
 
 ## License
 
-[MIT License](https://opensource.org/licenses/MIT) (c) 2023
+[MIT License](https://opensource.org/licenses/MIT) (c) 2026
