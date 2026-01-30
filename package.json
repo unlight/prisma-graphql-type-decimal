@@ -37,7 +37,8 @@
   },
   "peerDependencies": {
     "@prisma/client": "7",
-    "graphql": "16"
+    "graphql": "16",
+    "@prisma/client-runtime-utils": "7"
   },
   "devDependencies": {
     "@eslint/compat": "^2.0.2",
