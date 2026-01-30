@@ -1,3 +1,9 @@
+## [4.0.1](https://github.com/unlight/prisma-graphql-type-decimal/compare/v4.0.0...v4.0.1) (2026-01-30)
+
+### Bug Fixes
+
+* Build esm module ([5208be7](https://github.com/unlight/prisma-graphql-type-decimal/commit/5208be7981112964026bf8432d403409a23438fb))
+
 ## [4.0.0](https://github.com/unlight/prisma-graphql-type-decimal/compare/v3.0.1...v4.0.0) (2026-01-30)
 
 ### ⚠ BREAKING CHANGES
