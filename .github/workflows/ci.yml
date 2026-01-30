@@ -1,32 +1,22 @@
-name: Continuous Integration
+name: 'Test / Build / Release'
 on:
   - push
   - pull_request
 
 jobs:
   build:
-    name: 'Test on Node ${{ matrix.node }} and ${{ matrix.os }}'
-    runs-on: '${{ matrix.os }}'
+    runs-on: ubuntu-latest
     permissions:
       id-token: write
       contents: write
-    strategy:
-      # max-parallel: 1
-      matrix:
-        node:
-          - 24
-        os:
-          - ubuntu-latest
-          # - windows-latest
-          # - macOS-latest
     steps:
       - name: 'Checkout Repository'
         uses: actions/checkout@v4
 
-      - name: 'Setup Node ${{ matrix.node }}'
+      - name: 'Setup Node'
         uses: actions/setup-node@v4
         with:
-          node-version: '${{ matrix.node }}'
+          node-version: 24
 
       - name: 'Install Depependencies'
         run: npm install --force
