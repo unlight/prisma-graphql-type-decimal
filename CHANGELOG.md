@@ -1,3 +1,9 @@
+## [4.0.2](https://github.com/unlight/prisma-graphql-type-decimal/compare/v4.0.1...v4.0.2) (2026-01-30)
+
+### Bug Fixes
+
+* Unbundle decimal js ([c457f08](https://github.com/unlight/prisma-graphql-type-decimal/commit/c457f08b7496ffda49be4436b83b511aa51e999c))
+
 ## [4.0.1](https://github.com/unlight/prisma-graphql-type-decimal/compare/v4.0.0...v4.0.1) (2026-01-30)
 
 ### Bug Fixes
