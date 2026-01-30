@@ -1,3 +1,19 @@
+## [4.0.0](https://github.com/unlight/prisma-graphql-type-decimal/compare/v3.0.1...v4.0.0) (2026-01-30)
+
+### ⚠ BREAKING CHANGES
+
+* ESM only package
+* Updated Prisma to v7
+
+### Bug Fixes
+
+* Import decimal path ([8be6829](https://github.com/unlight/prisma-graphql-type-decimal/commit/8be68290da17b31862449019974bfab7a10ff085))
+* Update where Decimal is imported from to fix Prisma v7 ([840cd33](https://github.com/unlight/prisma-graphql-type-decimal/commit/840cd339468a8a8f3abd29148767e991790a7280))
+
+### Build System
+
+* Update build ([6a43597](https://github.com/unlight/prisma-graphql-type-decimal/commit/6a435975bc928915384764616479053305037323))
+
 ## <small>3.0.1 (2025-04-05)</small>
 
 * build: Update scripts ([06c067b](https://github.com/unlight/prisma-graphql-type-decimal/commit/06c067b))
