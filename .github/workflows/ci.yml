@@ -11,17 +11,17 @@ jobs:
       # max-parallel: 1
       matrix:
         node:
-          - 22
+          - 24
         os:
           - ubuntu-latest
           # - windows-latest
           # - macOS-latest
     steps:
       - name: 'Checkout Repository'
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: 'Setup Node ${{ matrix.node }}'
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: '${{ matrix.node }}'
 
@@ -44,12 +44,12 @@ jobs:
 
     steps:
       - name: 'Checkout Repository'
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: 'Setup Node'
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: 24
 
       - name: 'Install Depependencies'
         run: |
