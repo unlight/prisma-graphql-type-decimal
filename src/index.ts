@@ -1,8 +1,8 @@
-import { Decimal } from '@prisma/client/runtime/library.js';
+import { Prisma } from '@prisma/client/generator-build';
 import { GraphQLScalarType, GraphQLScalarTypeConfig, Kind } from 'graphql';
 
 const config: GraphQLScalarTypeConfig<
-  null | string | number | Decimal,
+  null | string | number | Prisma.Decimal,
   string
 > = {
   name: 'Decimal',
@@ -18,7 +18,7 @@ const config: GraphQLScalarTypeConfig<
    * Value from the client
    */
   parseValue(value) {
-    return new Decimal(value as Decimal.Value);
+    return new Prisma.Decimal(value as Prisma.Decimal.Value);
   },
   parseLiteral(ast) {
     if (
@@ -26,7 +26,7 @@ const config: GraphQLScalarTypeConfig<
       ast.kind === Kind.FLOAT ||
       ast.kind === Kind.STRING
     ) {
-      return new Decimal(ast.value);
+      return new Prisma.Decimal(ast.value);
     }
     // eslint-disable-next-line unicorn/no-null
     return null;
@@ -37,11 +37,11 @@ export const GraphQLDecimal = new GraphQLScalarType(config);
 
 export function createDecimalFromObject(object: any) {
   // eslint-disable-next-line total-functions/no-unsafe-type-assertion
-  return Object.create(Decimal.prototype, {
+  return Object.create(Prisma.Decimal.prototype, {
     d: { value: object.d },
     e: { value: object.e },
     s: { value: object.s },
-  }) as Decimal;
+  }) as Prisma.Decimal;
 }
 
 interface TransformFunctionParams {
