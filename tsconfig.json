@@ -1,15 +1,11 @@
 {
   "ts-node": {
-    "swc": true,
     "transpileOnly": true,
-    "moduleTypes": {
-      "webpack.config.js": "cjs"
-    },
     "require": []
   },
   "compilerOptions": {
     "target": "es2024",
-    "module": "commonjs",
+    "module": "es6",
     "moduleResolution": "node",
     "importHelpers": true,
     "strict": true,

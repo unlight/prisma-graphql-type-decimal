@@ -2,8 +2,8 @@ import 'reflect-metadata';
 
 import { Decimal } from '@prisma/client-runtime-utils';
 import { plainToClass, Transform, Type } from 'class-transformer';
-import { expect } from 'expect';
 import { graphql, GraphQLObjectType, GraphQLSchema } from 'graphql';
+import { describe, expect, it } from 'vitest';
 
 import { createDecimalFromObject, GraphQLDecimal, transformToDecimal } from '.';
 

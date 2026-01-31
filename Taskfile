@@ -7,12 +7,12 @@ buildMicrobundle5() {
   set -x
   rm -rfv dist
   dts-bundle-generator --no-banner --project tsconfig.build.json -o dist/index.d.ts src/index.ts
-  microbundle -i src/index.ts --tsconfig tsconfig.build.json --no-generateTypes --no-sourcemap --no-compress --target node -f esm -o dist
+  microbundle -i src/index.ts --tsconfig tsconfig.build.json --no-generateTypes --no-sourcemap --no-compress --no-pkg-main --target node -f esm -o dist
   name=$(cat package.json | jq -r '.name')
   cp -v README.md package.json dist
   cd dist
-  mv prisma-graphql-type-decimal.esm.mjs "$name.mjs" # tmp
   mv index.d.ts "$name.d.ts"
+  mv "$name.js" "$name.mjs"
   cat ../package.json | jq --arg name "$name" '
     .module = "./\($name).mjs" |
     .types = "./\($name).d.ts" |
