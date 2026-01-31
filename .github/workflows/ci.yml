@@ -1,10 +1,11 @@
-name: 'Test / Build / Release'
+name: Continuous Integration
 on:
   - push
   - pull_request
 
 jobs:
   build:
+    name: 'Test, build, release'
     runs-on: ubuntu-latest
     permissions:
       id-token: write
