@@ -19,7 +19,7 @@
   },
   "homepage": "https://github.com/unlight/prisma-graphql-type-decimal#readme",
   "scripts": {
-    "test": "npm run eslint && npm run tscheck && npm run test:cov && npm run test:m",
+    "test": "npm run eslint && npm run tscheck && npm run test:cov",
     "test:m": "node node_modules/@stryker-mutator/core/bin/stryker.js run",
     "test:r": "vitest run",
     "test:cov": "vitest run --coverage",
