@@ -5,7 +5,11 @@ import { plainToClass, Transform, Type } from 'class-transformer';
 import { graphql, GraphQLObjectType, GraphQLSchema } from 'graphql';
 import { describe, expect, it } from 'vitest';
 
-import { createDecimalFromObject, GraphQLDecimal, transformToDecimal } from '.';
+import {
+  createDecimalFromObject,
+  GraphQLDecimal,
+  transformToDecimal,
+} from './index.ts';
 
 it('smoke', async () => {
   const schema = new GraphQLSchema({

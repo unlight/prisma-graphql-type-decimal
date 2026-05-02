@@ -4,11 +4,13 @@
     "require": []
   },
   "compilerOptions": {
+    "allowImportingTsExtensions": true,
     "target": "es2024",
-    "module": "es6",
-    "moduleResolution": "node",
+    "module": "nodenext",
+    "moduleResolution": "nodenext",
     "importHelpers": true,
     "strict": true,
+    "noEmit": true,
     "noUncheckedIndexedAccess": true,
     "noImplicitAny": false,
     "experimentalDecorators": true,
