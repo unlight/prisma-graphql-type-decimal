@@ -4,11 +4,10 @@
   "license": "MIT",
   "description": "GraphQL type for Prisma's Decimal scalar, wrapper around decimal.js",
   "type": "module",
-  "module": "",
-  "types": "",
   "exports": {
     ".": {
-      "default": "./src/index.ts"
+      "default": "./src/index.ts",
+      "types": "./src/index.ts"
     }
   },
   "repository": {

@@ -14,9 +14,8 @@ buildMicrobundle5() {
   mv index.d.ts "$name.d.ts"
   mv "$name.js" "$name.mjs"
   cat ../package.json | jq --arg name "$name" '
-    .module = "./\($name).mjs" |
-    .types = "./\($name).d.ts" |
-    .exports.".".default = "./\($name).mjs"
+    .exports.".".default = "./\($name).mjs" | 
+    .exports.".".types = "./\($name).d.ts"
   ' > package.json
   cd ..
   set +x
