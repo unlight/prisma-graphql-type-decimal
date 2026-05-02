@@ -1,3 +1,9 @@
+## [4.0.3](https://github.com/unlight/prisma-graphql-type-decimal/compare/v4.0.2...v4.0.3) (2026-05-02)
+
+### Bug Fixes
+
+* Typings ([4d82226](https://github.com/unlight/prisma-graphql-type-decimal/commit/4d822260141e96c94af579dcea07107bcdc92478))
+
 ## [4.0.2](https://github.com/unlight/prisma-graphql-type-decimal/compare/v4.0.1...v4.0.2) (2026-01-30)
 
 ### Bug Fixes
