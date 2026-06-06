@@ -1,3 +1,9 @@
+## [4.0.4](https://github.com/unlight/prisma-graphql-type-decimal/compare/v4.0.3...v4.0.4) (2026-06-06)
+
+### Bug Fixes
+
+* Put types first in package exports ([4eea87e](https://github.com/unlight/prisma-graphql-type-decimal/commit/4eea87ee356120462df7b3b8b6407c996279fdda))
+
 ## [4.0.3](https://github.com/unlight/prisma-graphql-type-decimal/compare/v4.0.2...v4.0.3) (2026-05-02)
 
 ### Bug Fixes
