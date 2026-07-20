@@ -1,8 +1,4 @@
 {
-  "ts-node": {
-    "transpileOnly": true,
-    "require": []
-  },
   "compilerOptions": {
     "allowImportingTsExtensions": true,
     "target": "es2024",

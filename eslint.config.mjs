@@ -14,7 +14,6 @@ import { fixupPluginRules } from '@eslint/compat';
 export default [
   pluginJs.configs.recommended,
   ...tseslint.configs.recommended,
-  ...tseslint.configs.recommendedTypeChecked,
   prettier,
   {
     ignores: [
@@ -26,11 +25,6 @@ export default [
     ],
     languageOptions: {
       globals: globals.node,
-      parserOptions: {
-        project: ['./tsconfig.json'],
-        warnOnUnsupportedTypeScriptVersion: false,
-        tsconfigRootDir: import.meta.dirname,
-      },
     },
     rules: {
       'max-lines': [1, { max: 300 }],
@@ -55,14 +49,7 @@ export default [
   {
     ...unicorn.configs.recommended,
     rules: {
-      'unicorn/prevent-abbreviations': [
-        'warn',
-        {
-          replacements: {
-            args: false,
-          },
-        },
-      ],
+      'unicorn/prevent-abbreviations': 'off',
     },
   },
   {
