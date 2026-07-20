@@ -3,23 +3,28 @@ PATH="$PWD/node_modules/.bin":$PATH
 set -e
 set -x
 
-buildMicrobundle5() {
+build() {
   set -x
-  rm -rfv dist
-  dts-bundle-generator --no-banner --project tsconfig.build.json -o dist/index.d.ts src/index.ts
-  microbundle -i src/index.ts --tsconfig tsconfig.build.json --no-generateTypes --no-sourcemap --no-compress --no-pkg-main --target node -f esm -o dist
-  name=$(cat package.json | jq -r '.name')
-  cp -v README.md package.json dist
-  cd dist
-  mv index.d.ts "$name.d.ts"
-  mv "$name.js" "$name.mjs"
-  cat ../package.json | jq --arg name "$name" '
-    .exports."." = {
-      "types": "./\($name).d.ts",
-      "default": "./\($name).mjs"
-    }
-  ' > package.json
-  cd ..
+  rm -rf dist
+  tsdown
+
+  NAME=$(jq -r '.name' package.json)
+
+  mv "dist/index.js"  "dist/${NAME}.mjs"
+  mv "dist/index.d.ts" "dist/${NAME}.d.ts"
+  cp README.md dist/README.md
+
+  jq '
+    del(.scripts, .devDependencies)
+    | .module  = "./\(.name).mjs"
+    | .types   = "./\(.name).d.ts"
+    | .exports = {
+        ".": {
+          types:   "./\(.name).d.ts",
+          default: "./\(.name).mjs"
+        }
+      }
+  ' package.json > dist/package.json
   set +x
 }
 

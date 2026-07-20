@@ -23,7 +23,10 @@
     "declaration": true,
     "declarationMap": false,
     "skipLibCheck": true,
+    "rootDir": ".",
+    "rewriteRelativeImportExtensions": true,
     "lib": ["esnext"],
+    "types": ["node"],
     "paths": {},
     "plugins": []
   },
